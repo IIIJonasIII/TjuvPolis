@@ -10,7 +10,7 @@ namespace ConsoleApp29
         {
             //test1();
 
-            Console.WriteLine("hej");
+            
             int sizeY = 27;
             int sizeX = 100;
 
