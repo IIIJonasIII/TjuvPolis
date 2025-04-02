@@ -5,11 +5,12 @@ namespace ConsoleApp29
 {
     internal class Program
     {
+        
         static void Main(string[] args)
         {
             //test1();
 
-
+            Console.WriteLine("hej");
             int sizeY = 27;
             int sizeX = 100;
 
