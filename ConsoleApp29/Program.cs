@@ -5,6 +5,7 @@ namespace ConsoleApp29
 {
     internal class Program
     {
+        
         static void Main(string[] args)
         {
             //Persons inom Y-axeln 27-50, X-axeln 1-99
@@ -12,7 +13,9 @@ namespace ConsoleApp29
             //STATUS X-axel = 2 till 65, Y-axel = 7 till 14
             //PRISON X-axel = 69 till 99, Y-axel = 7 till 24
 
+
             int sizeY = 51;
+
             int sizeX = 100;
 
             int polisX = 40;
