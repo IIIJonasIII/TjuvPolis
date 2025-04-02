@@ -25,7 +25,15 @@ namespace ConsoleApp29
             Console.SetWindowSize(sizeX, sizeY);
 
             Console.SetBufferSize(sizeX, sizeY);
-            PrintFrame();
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+            Console.WriteLine("qqqqqqqqqqqqqqqqqqqqqqqqqqqqqqq");
+            //PrintFrame();
 
             while (true)
             {
