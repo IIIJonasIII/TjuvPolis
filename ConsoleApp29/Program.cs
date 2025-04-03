@@ -14,6 +14,7 @@ namespace ConsoleApp29
             //STATUS X-axel = 2 till 65, Y-axel = 7 till 14
             //PRISON X-axel = 69 till 99, Y-axel = 7 till 24
 
+            //TEST
             int sizeY = 51;
 
             int sizeX = 100;
