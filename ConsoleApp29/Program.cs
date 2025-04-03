@@ -13,7 +13,7 @@ namespace ConsoleApp29
             //NEWS X-axel = 2 till 65, Y-axel = 17 till 24
             //STATUS X-axel = 2 till 65, Y-axel = 7 till 14
             //PRISON X-axel = 69 till 99, Y-axel = 7 till 24
-
+            Console.WriteLine("hej");
 
             int sizeY = 51;
 
