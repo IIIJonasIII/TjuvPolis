@@ -7,9 +7,21 @@ using System.Threading.Tasks;
 namespace TjuvOchPolis;
 internal class Tjuv : Person
 {
-    public int StolenItems { get; set; }
-    public Tjuv(List<string> inventory, int xdirection, int ydirection, int stolenItems) : base(inventory, xdirection, ydirection)
+    public string Symbol { get; set; } = "T";
+    public int StolenItems { get; set; } = 0;
+    public Tjuv(List<string> inventory) : base(inventory)
     {
-        StolenItems = stolenItems;
+        
+    }
+    public void PositionWithSymbol()
+    {
+        Console.SetCursorPosition(Xdirection, Ydirection);
+        PrintColor();
+    }
+    public void PrintColor()
+    {
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write(Symbol);
+        Console.ResetColor();
     }
 }
