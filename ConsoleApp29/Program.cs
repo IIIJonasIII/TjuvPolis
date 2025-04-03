@@ -27,8 +27,8 @@ namespace ConsoleApp29
             Console.SetWindowSize(sizeX, sizeY);
 
             Console.SetBufferSize(sizeX, sizeY);
-            
-            
+
+
             PrintFrame();
 
             while (true)
