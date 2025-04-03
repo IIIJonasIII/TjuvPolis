@@ -8,9 +8,21 @@ using System.Collections;
 namespace TjuvOchPolis;
 internal class Medborgare : Person
 {
+    public string Symbol { get; private set; } = "C";
     public int Money { get; set; }
-    public Medborgare(List<string> inventory, int xdirection, int ydirection, int money) : base(inventory, xdirection, ydirection)
+    public Medborgare(List<string> inventory) : base(inventory)
     {   
-        Money = money;
+        
+    }
+    public void PositionWithSymbol()
+    {
+        Console.SetCursorPosition(Xdirection, Ydirection);
+        PrintColor();
+    }
+    public void PrintColor()
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.Write(Symbol);
+        Console.ResetColor();
     }
 }
