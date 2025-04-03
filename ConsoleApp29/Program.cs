@@ -8,24 +8,30 @@ namespace ConsoleApp29
         
         static void Main(string[] args)
         {
-            //test1();
+            //Persons inom Y-axeln 27-50, X-axeln 1-99
+            //NEWS X-axel = 2 till 65, Y-axel = 17 till 24
+            //STATUS X-axel = 2 till 65, Y-axel = 7 till 14
+            //PRISON X-axel = 69 till 99, Y-axel = 7 till 24
 
-            
-            int sizeY = 27;
+
+            int sizeY = 51;
+
             int sizeX = 100;
 
-            int polisX = 10;
-            int polisY = 10;
+            int polisX = 40;
+            int polisY = 40;
 
-            int tjuvX = 15;
-            int tjuvY = 15;
+            int tjuvX = 40;
+            int tjuvY = 40;
 
-            int civilX = 20;
-            int civilY = 20;
+            int civilX = 40;
+            int civilY = 40;
 
             Console.SetWindowSize(sizeX, sizeY);
 
             Console.SetBufferSize(sizeX, sizeY);
+            
+            
             PrintFrame();
 
             while (true)
@@ -55,7 +61,7 @@ namespace ConsoleApp29
                 Console.SetCursorPosition(civilX, civilY);
                 PrintGreen("C");
 
-                Thread.Sleep(100);
+                Thread.Sleep(200);
             }
         }
 
@@ -135,73 +141,7 @@ namespace ConsoleApp29
             Console.ResetColor();
         }
 
-        private static void test1()
-        {
-            int sizeY = 25;
-            int sizeX = 100;
-
-            string[,] spelPlan = new string[sizeX, sizeY];
-
-            int polisX = 10;
-            int polisY = 10;
-
-            int tjuvX = 15;
-            int tjuvY = 15;
-
-            int civilX = 20;
-            int civilY = 20;
-
-            // setting the window size 
-            Console.SetWindowSize(sizeX, sizeY);
-
-            // setting buffer size of console 
-            Console.SetBufferSize(sizeX, sizeY);
-
-            while (true)
-            {
-
-                for (int i = 0; i < sizeX; i++)
-                {
-                    for (int j = 0; j < sizeY; j++)
-                    {
-                        spelPlan[i, j] = " ";
-                    }
-                }
-
-                spelPlan[civilX, civilY] = "C";
-                spelPlan[tjuvX, tjuvY] = "T";
-                spelPlan[polisX, polisY] = "P";
-
-
-                for (int i = 0; i < sizeX; i++)
-                {
-                    for (int j = 0; j < sizeY; j++)
-                    {
-                        Console.SetCursorPosition(i, j);
-                        Console.Write(spelPlan[i, j]);
-                    }
-                    Console.WriteLine();
-                }
-
-                Thread.Sleep(100);
-
-                polisX = MoveRight(polisX, sizeX);
-                //polisX = MoveLeft(polisX, sizeX);
-                polisY = MoveUp(polisY, sizeY);
-                //polisY = MoveDown(polisY, sizeY);
-
-                //tjuvX = MoveRight(tjuvX, sizeX);
-                tjuvX = MoveLeft(tjuvX, sizeX);
-                //tjuvY = MoveUp(tjuvY, sizeY);
-                tjuvY = MoveDown(tjuvY, sizeY);
-
-                civilX = MoveRight(civilX, sizeX);
-                //civilX = MoveLeft(civilX, sizeX);
-                //civilY = MoveUp(civilY, sizeY);
-                //civilY = MoveDown(civilY, sizeY);
-
-            }
-        }
+        
 
         public static int MoveRight(int X, int sizeX)
         {
@@ -223,7 +163,7 @@ namespace ConsoleApp29
         }
         public static int MoveUp(int Y, int sizeY)
         {
-            if (Y == 3)
+            if (Y == 27)
                 Y = sizeY-1;
             else
                 Y--;
@@ -233,7 +173,7 @@ namespace ConsoleApp29
         public static int MoveDown(int Y, int sizeY)
         {
             if (Y == sizeY - 1)
-                Y = 3;
+                Y = 27;
             else
                 Y++;
 
