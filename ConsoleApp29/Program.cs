@@ -1,11 +1,12 @@
 ﻿using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
+using TjuvOchPolis;
 
 namespace ConsoleApp29
 {
     internal class Program
     {
-        
+
         static void Main(string[] args)
         {
             //Persons inom Y-axeln 27-50, X-axeln 1-99
@@ -30,12 +31,14 @@ namespace ConsoleApp29
             Console.SetWindowSize(sizeX, sizeY);
 
             Console.SetBufferSize(sizeX, sizeY);
+            Console.CursorVisible = false;
             
             
             PrintFrame();
 
             while (true)
             {
+             
                 Console.SetCursorPosition(polisX, polisY);
                 Console.Write(" ");
 
@@ -141,8 +144,6 @@ namespace ConsoleApp29
             Console.ResetColor();
         }
 
-        
-
         public static int MoveRight(int X, int sizeX)
         {
             if (X == sizeX-1)
@@ -179,6 +180,6 @@ namespace ConsoleApp29
 
             return Y;
         }
-        
+
     }
 }
