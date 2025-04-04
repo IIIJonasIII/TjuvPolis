@@ -36,14 +36,47 @@ namespace ConsoleApp29
                 medborgare.Add(new Medborgare(new List<string>()));
             }
 
+
             PrintFrame();
+            PrintStatus();
+            PrintPrison();
+            PrintNews();
 
             while (true)
             {
                 PrintPersons(poliser, tjuvar, medborgare);
             }
         }
-
+        private static void PrintStatus()
+        {
+            Console.SetCursorPosition(2, 7);
+            Console.WriteLine("''''''''''''''''''''''''''''''TEST''''''''''''''''''''''''''''''");
+            Console.SetCursorPosition(2, 8);
+            Console.WriteLine("Poliser: HarriHaffa, HarriHaffa, HarriHaffa, HarriHaffa");
+            Console.SetCursorPosition(2, 9);
+            Console.WriteLine("Tjuvar: Boven, boven boven boven ");
+            Console.SetCursorPosition(2, 10);
+            Console.WriteLine("Medborgare: fisen fisen fisen fisen");
+        }
+        private static void PrintNews()
+        {
+            Console.SetCursorPosition(2, 17);
+            Console.WriteLine("''''''''''''''''''''''''''''''TEST''''''''''''''''''''''''''''''");
+            Console.SetCursorPosition(2, 18);
+            Console.WriteLine("Polisen grep Alex");
+            Console.SetCursorPosition(2, 19);
+            Console.WriteLine("Tjuvarn skrek högt");
+            Console.SetCursorPosition(2, 20);
+            Console.WriteLine("Medborgaren sprang");
+        }
+        private static void PrintPrison()
+        {
+            for (int i = 7; i < 25; i++)
+            {
+                Console.SetCursorPosition(69, i);
+                Console.WriteLine("''''''''''''TEST'''''''''''''''");
+            }
+        }
         private static void PrintPersons(List<Polis> poliser, List<Tjuv> tjuvar, List<Medborgare> medborgare)
         {
             foreach (var polis in poliser)
