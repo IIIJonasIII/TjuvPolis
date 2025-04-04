@@ -6,17 +6,33 @@ namespace TjuvOchPolis
 {
     internal class Stad
     {
-        private List<Polis> poliser = new List<Polis>();
-        private List<Tjuv> tjuvar = new List<Tjuv>();
-        private List<Medborgare> medborgare = new List<Medborgare>();
+        public void StartGame()
+        {
+            while (true)
+            {
+                PrintStatus(poliser,tjuvar,medborgare);
+                PrintNews();
+                PrintPrison();
+                PrintPersons();
+                Thread.Sleep(200);
+            }
+        }
+
+
+        public List<Polis> poliser = new List<Polis>();
+        public List<Tjuv> tjuvar = new List<Tjuv>();
+        public List<Medborgare> medborgare = new List<Medborgare>();
 
         public Stad()
         {
             for (int i = 0; i < 5; i++)
             {
-                poliser.Add(new Polis(new List<string>()));
-                tjuvar.Add(new Tjuv(new List<string>()));
-                medborgare.Add(new Medborgare(new List<string>()));
+                poliser.Add(new Polis(RandomNamn("Polis"), new List<string>()));
+
+                tjuvar.Add(new Tjuv(RandomNamn("Tjuv"), new List<string>()));
+
+                medborgare.Add(new Medborgare(RandomNamn("Medborgare"), new List<string>()));
+
             }
         }
 
@@ -24,12 +40,13 @@ namespace TjuvOchPolis
         {
             while (true)
             {
+                PrintStatus(poliser, tjuvar, medborgare);
                 PrintPersons();
                 Thread.Sleep(200);
             }
         }
 
-        private void PrintPersons()
+        public void PrintPersons()
         {
             foreach (var polis in poliser)
             {
@@ -52,18 +69,23 @@ namespace TjuvOchPolis
                 civil.PositionWithSymbol();
             }
         }
-
-        public void PrintStatus()
+        
+        public void PrintStatus(List<Polis> poliser, List<Tjuv> tjuvar, List<Medborgare> medborgare)
         {
             Console.SetCursorPosition(2, 7);
-            Console.WriteLine("''''''''''''''''''''''''''''''STATUS''''''''''''''''''''''''''''");
+
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine("Poliser: HarriHaffa x5");
+            Console.WriteLine("Poliser: " + string.Join(", ", poliser.Select(p => p.Name)));
+
             Console.SetCursorPosition(2, 9);
-            Console.WriteLine("Tjuvar: Boven x5");
+            Console.WriteLine("Tjuvar: " + string.Join(", ", tjuvar.Select(t => t.Name)));
+
             Console.SetCursorPosition(2, 10);
-            Console.WriteLine("Medborgare: Fisen x5");
+            Console.WriteLine("Medborgare: " + string.Join(", ", medborgare.Select(m => m.Name)));
+
         }
+
+
 
         public void PrintNews()
         {
@@ -85,5 +107,26 @@ namespace TjuvOchPolis
                 Console.WriteLine("''''''''''''TEST'''''''''''''''");
             }
         }
+
+        public string RandomNamn(string klass)
+        {
+            Random random = new Random();
+
+            List<string> polisNamn = new List<string>() { "Bengt", "Lars", "Eva", "Olof", "Anders", "Kristina", "Göran", "Marianne", "Stefan", "Annika", "Hans", "Carina", "Johan", "Birgitta" };
+            List<string> tjuvNamn = new List<string>() { "Jonas", "Kevin", "Rasmus", "Amer", "Ludvig", "Alexander", "Johan", "Mattias", "Emil", "Robin", "Daniel", "Simon", "Oscar", "Niklas", "Patrik", "Andreas", "Marcus", "Erik", "Henrik", "Sebastian" };
+            List<string> medborgarNamn = new List<string>() { "Alex", "Karin", "Joel", "Gunilla", "Joakim", "Janne", "Karin", "Mats", "Stina", "Åsa", "Oskar", "Elin", "Tobias", "Malin", "Fredrik", "Lina", "Björn", "Helena", "Erik" };
+
+            if (klass == "Polis")
+                return polisNamn[random.Next(polisNamn.Count)];
+            else if (klass == "Tjuv")
+                return tjuvNamn[random.Next(tjuvNamn.Count)];
+            else
+                return medborgarNamn[random.Next(medborgarNamn.Count)];
+
+
+
+
+        }
+
     }
 }

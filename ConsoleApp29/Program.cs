@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System.Collections.Generic;
+using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using TjuvOchPolis;
 
@@ -9,17 +10,13 @@ namespace ConsoleApp29
         static void Main(string[] args)
         {
             {
-              
+
                 Console.CursorVisible = false;
-
-
                 PrintFrame();
 
                 Stad stad = new Stad();
-                stad.PrintStatus();
-                stad.PrintNews();
-                stad.PrintPrison();
-                stad.Start();
+                stad.StartGame();
+
             }
         }
        

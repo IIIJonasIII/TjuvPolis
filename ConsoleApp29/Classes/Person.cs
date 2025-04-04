@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TjuvOchPolis;
 internal class Person
 {
@@ -12,16 +13,20 @@ internal class Person
     public static Random random = new Random();
 
 
+    public string Name { get; set; }
     public List<string> Inventory { get; set; }
     public int riktning { get; set; } = random.Next(1, 9);
     public int Xdirection { get; set; } = random.Next(1, 100);
     public int Ydirection { get; set; } = random.Next(27, 51);
     public string symbol { get; set; }
 
-    public Person(List<string> inventory)
+    public Person(string name, List<string> inventory)
     {
+        Name = name;
         Inventory = inventory;
     }
+
+
     public void RandomDirection()
     {
        
