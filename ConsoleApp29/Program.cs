@@ -21,42 +21,44 @@ namespace ConsoleApp29
             List<Polis> poliser = new List<Polis>();
             for (int i = 0; i < 5; i++)
             {
-                poliser.Add(new Polis(new List<string>()));
+                poliser.Add(new Polis(RandomNamn("Polis"), new List<string>()));
             }
 
             List<Tjuv> tjuvar = new List<Tjuv>();
             for (int i = 0; i < 5; i++)
             {
-                tjuvar.Add(new Tjuv(new List<string>()));
+                tjuvar.Add(new Tjuv(RandomNamn("Tjuv") ,new List<string>()));
             }
 
             List<Medborgare> medborgare = new List<Medborgare>();
             for (int i = 0; i < 5; i++)
             {
-                medborgare.Add(new Medborgare(new List<string>()));
+                medborgare.Add(new Medborgare(RandomNamn("Medborgare") ,new List<string>()));
             }
 
 
             PrintFrame();
-            PrintStatus();
             PrintPrison();
             PrintNews();
 
             while (true)
             {
+                PrintStatus(poliser, tjuvar, medborgare);
                 PrintPersons(poliser, tjuvar, medborgare);
             }
         }
-        private static void PrintStatus()
+        private static void PrintStatus(List<Polis> poliser, List<Tjuv> tjuvar, List<Medborgare> medborgare)
         {
             Console.SetCursorPosition(2, 7);
-            Console.WriteLine("''''''''''''''''''''''''''''''TEST''''''''''''''''''''''''''''''");
+          
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine("Poliser: HarriHaffa, HarriHaffa, HarriHaffa, HarriHaffa");
+            Console.WriteLine("Poliser: " + string.Join(", ", poliser.Select(p => p.Name)));
+
             Console.SetCursorPosition(2, 9);
-            Console.WriteLine("Tjuvar: Boven, boven boven boven ");
+            Console.WriteLine("Tjuvar: " + string.Join(", ", tjuvar.Select(t => t.Name)));
+
             Console.SetCursorPosition(2, 10);
-            Console.WriteLine("Medborgare: fisen fisen fisen fisen");
+            Console.WriteLine("Medborgare: " + string.Join(", ", medborgare.Select(m => m.Name)));
         }
         private static void PrintNews()
         {
@@ -102,6 +104,25 @@ namespace ConsoleApp29
             Thread.Sleep(200);
         }
 
+        private static string RandomNamn(string klass)
+        {
+            Random random = new Random();
+
+            List<string> polisNamn = new List<string>() { "Bengt", "Lars", "Eva", "Olof","Anders", "Kristina", "Göran", "Marianne", "Stefan", "Annika", "Hans", "Carina", "Johan", "Birgitta"  };
+            List<string> tjuvNamn = new List<string>() { "Jonas", "Kevin", "Rasmus", "Amer", "Ludvig", "Alexander", "Johan", "Mattias", "Emil", "Robin", "Daniel", "Simon", "Oscar", "Niklas", "Patrik", "Andreas", "Marcus", "Erik", "Henrik", "Sebastian"  };
+            List<string> medborgarNamn = new List<string>() { "Alex", "Karin", "Joel", "Gunilla", "Joakim", "Janne", "Karin", "Mats", "Stina", "Åsa", "Oskar", "Elin", "Tobias", "Malin", "Fredrik", "Lina", "Björn", "Helena", "Erik" };
+
+            if (klass == "Polis")
+                return polisNamn[random.Next(polisNamn.Count)];
+            else if (klass == "Tjuv")
+                return tjuvNamn[random.Next(tjuvNamn.Count)];
+            else
+                return medborgarNamn[random.Next(medborgarNamn.Count)];
+
+
+
+
+        }
         private static void PrintFrame()
         {
             Console.WriteLine(@"

@@ -10,7 +10,7 @@ internal class Medborgare : Person
 {
     public string Symbol { get; private set; } = "C";
     public int Money { get; set; }
-    public Medborgare(List<string> inventory) : base(inventory)
+    public Medborgare(string name, List<string> inventory) : base(name, inventory)
     {   
         
     }
