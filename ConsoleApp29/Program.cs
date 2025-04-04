@@ -1,68 +1,105 @@
 ﻿using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
+using TjuvOchPolis;
 
 namespace ConsoleApp29
 {
     internal class Program
     {
-        
         static void Main(string[] args)
         {
+            Console.CursorVisible = false;
+            //Console.SetWindowSize(sizeX, sizeY);
+            //Console.SetBufferSize(sizeX+1, sizeY+1);
+ 
             //Persons inom Y-axeln 27-50, X-axeln 1-99
             //NEWS X-axel = 2 till 65, Y-axel = 17 till 24
             //STATUS X-axel = 2 till 65, Y-axel = 7 till 14
             //PRISON X-axel = 69 till 99, Y-axel = 7 till 24
 
-
-            int sizeY = 51;
-
-            int sizeX = 100;
-
-            int polisX = 40;
-            int polisY = 40;
-
-            int tjuvX = 40;
-            int tjuvY = 40;
-
-            int civilX = 40;
-            int civilY = 40;
-
-            Console.SetWindowSize(sizeX, sizeY);
-
-            Console.SetBufferSize(sizeX, sizeY);
             
-            
+            List<Polis> poliser = new List<Polis>();
+            for (int i = 0; i < 5; i++)
+            {
+                poliser.Add(new Polis(new List<string>()));
+            }
+
+            List<Tjuv> tjuvar = new List<Tjuv>();
+            for (int i = 0; i < 5; i++)
+            {
+                tjuvar.Add(new Tjuv(new List<string>()));
+            }
+
+            List<Medborgare> medborgare = new List<Medborgare>();
+            for (int i = 0; i < 5; i++)
+            {
+                medborgare.Add(new Medborgare(new List<string>()));
+            }
+
+
             PrintFrame();
+            PrintStatus();
+            PrintPrison();
+            PrintNews();
 
             while (true)
             {
-                Console.SetCursorPosition(polisX, polisY);
-                Console.Write(" ");
-
-                Console.SetCursorPosition(tjuvX, tjuvY);
-                Console.Write(" ");
-
-                Console.SetCursorPosition(civilX, civilY);
-                Console.Write(" ");
-
-                polisY = MoveUp(polisY, sizeY);
-
-                tjuvY = MoveDown(tjuvY, sizeY);
-                tjuvX = MoveLeft(tjuvX, sizeX);
-
-                civilX = MoveRight(civilX, sizeX);
-
-                Console.SetCursorPosition(polisX, polisY);
-                PrintBlue("P");
-
-                Console.SetCursorPosition(tjuvX, tjuvY);
-                PrintRed("T");
-
-                Console.SetCursorPosition(civilX, civilY);
-                PrintGreen("C");
-
-                Thread.Sleep(200);
+                PrintPersons(poliser, tjuvar, medborgare);
             }
+        }
+        private static void PrintStatus()
+        {
+            Console.SetCursorPosition(2, 7);
+            Console.WriteLine("''''''''''''''''''''''''''''''TEST''''''''''''''''''''''''''''''");
+            Console.SetCursorPosition(2, 8);
+            Console.WriteLine("Poliser: HarriHaffa, HarriHaffa, HarriHaffa, HarriHaffa");
+            Console.SetCursorPosition(2, 9);
+            Console.WriteLine("Tjuvar: Boven, boven boven boven ");
+            Console.SetCursorPosition(2, 10);
+            Console.WriteLine("Medborgare: fisen fisen fisen fisen");
+        }
+        private static void PrintNews()
+        {
+            Console.SetCursorPosition(2, 17);
+            Console.WriteLine("''''''''''''''''''''''''''''''TEST''''''''''''''''''''''''''''''");
+            Console.SetCursorPosition(2, 18);
+            Console.WriteLine("Polisen grep Alex");
+            Console.SetCursorPosition(2, 19);
+            Console.WriteLine("Tjuvarn skrek högt");
+            Console.SetCursorPosition(2, 20);
+            Console.WriteLine("Medborgaren sprang");
+        }
+        private static void PrintPrison()
+        {
+            for (int i = 7; i < 25; i++)
+            {
+                Console.SetCursorPosition(69, i);
+                Console.WriteLine("''''''''''''TEST'''''''''''''''");
+            }
+        }
+        private static void PrintPersons(List<Polis> poliser, List<Tjuv> tjuvar, List<Medborgare> medborgare)
+        {
+            foreach (var polis in poliser)
+            {
+                polis.Position();
+                polis.RandomDirection();
+                polis.PositionWithSymbol();
+            }
+
+            foreach (var tjyv in tjuvar)
+            {
+                tjyv.Position();
+                tjyv.RandomDirection();
+                tjyv.PositionWithSymbol();
+            }
+
+            foreach (var medborgar in medborgare)
+            {
+                medborgar.Position();
+                medborgar.RandomDirection();
+                medborgar.PositionWithSymbol();
+            }
+            Thread.Sleep(200);
         }
 
         private static void PrintFrame()
@@ -121,64 +158,5 @@ namespace ConsoleApp29
 ╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝
 ");
         }
-
-        private static void PrintBlue(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Blue;
-            Console.Write(text);
-            Console.ResetColor();
-        }
-        private static void PrintGreen(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write(text);
-            Console.ResetColor();
-        }
-        private static void PrintRed(string text)
-        {
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.Write(text);
-            Console.ResetColor();
-        }
-
-        
-
-        public static int MoveRight(int X, int sizeX)
-        {
-            if (X == sizeX-1)
-                X = 1;
-            else
-                X++;
-
-            return X;
-        }
-        public static int MoveLeft(int X, int sizeX)
-        {
-            if (X == 1)
-                X = sizeX-1;
-            else
-                X--;
-
-            return X;
-        }
-        public static int MoveUp(int Y, int sizeY)
-        {
-            if (Y == 27)
-                Y = sizeY-1;
-            else
-                Y--;
-
-            return Y;
-        }
-        public static int MoveDown(int Y, int sizeY)
-        {
-            if (Y == sizeY - 1)
-                Y = 27;
-            else
-                Y++;
-
-            return Y;
-        }
-        
     }
 }
