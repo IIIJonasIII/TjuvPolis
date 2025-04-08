@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace TjuvOchPolis;
 internal class Person
 {
@@ -24,6 +25,8 @@ internal class Person
         Name = name;
         Inventory = inventory;
     }
+
+
     public void RandomDirection()
     {
        

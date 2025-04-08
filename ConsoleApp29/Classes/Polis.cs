@@ -11,7 +11,7 @@ internal class Polis : Person
     public int ThiefsCaught { get; set; } = 0;
     public Polis(string name, List<string> inventory) : base(name, inventory)
     {
-        
+
     }
     public void PositionWithSymbol()
     {
@@ -25,3 +25,4 @@ internal class Polis : Person
         Console.ResetColor();
     }
 }
+
