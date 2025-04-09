@@ -10,11 +10,12 @@ namespace TjuvOchPolis
         {
             while (true)
             {
-                PrintStatus(poliser,tjuvar,medborgare);
-                PrintNews();
-                PrintPrison();
+                PrintStatus(poliser, tjuvar, medborgare);
                 PrintPersons();
-                Thread.Sleep(200);
+                Check();     
+                PrintPrison();         
+                PrintNews();           
+                Thread.Sleep(300);
             }
         }
 
@@ -22,6 +23,8 @@ namespace TjuvOchPolis
         public List<Polis> poliser = new List<Polis>();
         public List<Tjuv> tjuvar = new List<Tjuv>();
         public List<Medborgare> medborgare = new List<Medborgare>();
+
+        public List<Tjuv> fangelse = new List<Tjuv>();
 
         public Stad()
         {
@@ -101,12 +104,24 @@ namespace TjuvOchPolis
 
         public void PrintPrison()
         {
-            for (int i = 7; i < 25; i++)
+            int rad = 8;
+            Console.SetCursorPosition(69, 7);
+            Console.WriteLine("Fängelse:");
+
+            foreach (var fånge in fangelse)
+            {
+                Console.SetCursorPosition(69, rad++);
+                Console.WriteLine($"- {fånge.Name}");
+            }
+
+            
+            for (int i = rad; i < 25; i++)
             {
                 Console.SetCursorPosition(69, i);
-                Console.WriteLine("''''''''''''TEST'''''''''''''''");
+                Console.WriteLine("                          ");
             }
         }
+
 
         public string RandomNamn(string klass)
         {
@@ -127,6 +142,47 @@ namespace TjuvOchPolis
 
 
         }
+
+        public void Check()
+        {
+            
+            foreach (var polis in poliser)
+            {
+                foreach (var tjuv in tjuvar.ToList()) 
+                {
+                    if (polis.Xdirection == tjuv.Xdirection && polis.Ydirection == tjuv.Ydirection)
+                    {
+                        Console.SetCursorPosition(2, 18);
+                        Console.WriteLine($"Polis {polis.Name} grep tjuven {tjuv.Name}!");
+
+                        tjuvar.Remove(tjuv);
+                        fangelse.Add(tjuv); 
+                    }
+
+                }
+            }
+
+            
+            foreach (var tjuv in tjuvar)
+            {
+                foreach (var medb in medborgare.ToList())
+                {
+                    if (tjuv.Xdirection == medb.Xdirection && tjuv.Ydirection == medb.Ydirection)
+                    {
+                        Console.SetCursorPosition(2, 19);
+                        Console.WriteLine($"Tjuven {tjuv.Name} rånade medborgaren {medb.Name}!");
+
+                        medborgare.Remove(medb);
+
+                       
+                        tjuv.Inventory.Add("Plånbok");
+                    }
+                }
+            }
+        }
+
+
+
 
     }
 }
