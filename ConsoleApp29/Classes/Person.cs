@@ -20,10 +20,23 @@ internal class Person
     public int Ydirection { get; set; } = random.Next(27, 51);
     public string symbol { get; set; }
 
-    public Person(string name, List<string> inventory)
+    public Person(List<string> inventory)
     {
-        Name = name;
+        Name = RandomNamn();
+
         Inventory = inventory;
+    }
+
+    public string RandomNamn()
+    {
+        List<string> PTM = new List<string>() { "Bengt", "Lars", "Eva", "Olof", "Anders", "Kristina", "Göran", "Marianne", "Stefan", "Annika", "Hans", "Carina", "Johan", "Birgitta", "Alex", "Karin", "Joel", "Gunilla", 
+            "Joakim", "Janne", "Karin", "Mats", "Stina", "Åsa", "Oskar", "Elin", "Tobias", "Malin", "Fredrik", "Lina", "Björn", "Helena", "Erik", "Jonas", "Kevin", "Rasmus", "Amer", "Ludvig", "Alexander", "Johan", "Mattias", 
+            "Emil", "Robin", "Daniel", "Simon", "Oscar", "Niklas", "Patrik", "Andreas", "Marcus", "Erik", "Henrik", "Sebastian" };
+         
+        return PTM [random.Next(1, PTM.Count)];
+        
+
+
     }
 
 
