@@ -77,7 +77,7 @@ internal class Person
                 break;
         }
     }
-    public int MoveRight(int Xdirection)
+    public virtual int MoveRight(int Xdirection)
     {
         if (Xdirection == sizeX)
             Xdirection = 1;
@@ -86,7 +86,7 @@ internal class Person
 
         return Xdirection;
     }
-    public int MoveLeft(int Xdirection)
+    public virtual int MoveLeft(int Xdirection)
     {
         if (Xdirection == 1)
             Xdirection = sizeX;
@@ -95,7 +95,7 @@ internal class Person
 
         return Xdirection;
     }
-    public int MoveUp(int Ydirection)
+    public virtual int MoveUp(int Ydirection)
     {
         if (Ydirection == 27)
             Ydirection = sizeY;
@@ -104,7 +104,7 @@ internal class Person
 
         return Ydirection;
     }
-    public int MoveDown(int Ydirection)
+    public virtual int MoveDown(int Ydirection)
     {
         if (Ydirection == sizeY)
             Ydirection = 27;

@@ -14,7 +14,7 @@ namespace TjuvOchPolis
                 PrintStatus();
                 PrintPersons();
                 Check();     
-                PrintPrison();         
+                //PrintPrison();         
                 PrintNews();
                 Thread.Sleep(200);
             }
@@ -24,8 +24,7 @@ namespace TjuvOchPolis
         public List<Polis> poliser = new List<Polis>();
         public List<Tjuv> tjuvar = new List<Tjuv>();
         public List<Medborgare> medborgare = new List<Medborgare>();
-
-        public List<Tjuv> fangelse = new List<Tjuv>();
+        public List<Fånge> fangelse = new List<Fånge>();
 
         public Stad()
         {
@@ -40,6 +39,7 @@ namespace TjuvOchPolis
 
             for (int i = 0;i < 15; i++)
                 medborgare.Add(new Medborgare(new   Stack<string>(inventory)));
+
         }
 
         public void Start()
@@ -74,12 +74,18 @@ namespace TjuvOchPolis
                 civil.RandomDirection();
                 civil.PositionWithSymbol();
             }
+            foreach (var fånge in fangelse)
+            {
+                fånge.Position();
+                fånge.RandomDirection();
+                fånge.PositionWithSymbol();
+            }
         }
         
         public void PrintStatus()
         {
             Console.SetCursorPosition(2, 7);
-            Console.WriteLine("''''''''''''''''''''''''''''''Status''''''''''''''''''''''''''''''");
+            Console.WriteLine("''''''''''''''''''''''''''''''Status''''''''''''''''''''''''''''");
             Console.SetCursorPosition(2, 8);
             Console.WriteLine("Poliser: " + "A");
 
@@ -132,7 +138,8 @@ namespace TjuvOchPolis
                         {
                             tjuv.Inventory.Clear();
                             tjuvar.Remove(tjuv);
-                            fangelse.Add(tjuv);
+                            
+                            fangelse.Add(new Fånge(tjuv, new Stack<string>([])));
                         }
                         else
                         {
