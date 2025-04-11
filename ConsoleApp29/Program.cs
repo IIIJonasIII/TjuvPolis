@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using NAudio.CoreAudioApi;
+using NAudio.Wave;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Security.Cryptography.X509Certificates;
 using TjuvOchPolis;
@@ -9,15 +11,13 @@ namespace ConsoleApp29
     {
         static void Main(string[] args)
         {
-            {
+            PlaySound();
+            Console.CursorVisible = false;
+            PrintFrame();
 
-                Console.CursorVisible = false;
-                PrintFrame();
+            Stad stad = new Stad();
+            stad.StartGame();
 
-                Stad stad = new Stad();
-                stad.StartGame();
-
-            }
         }
         private static void PrintHeadLine()
         {
@@ -82,6 +82,31 @@ namespace ConsoleApp29
 ║                                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝
 ");
+        }
+        static void PlaySound()
+        {
+            string filePath = Path.Combine("Audio", "cityaudio.mp3");
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException($"File not found {filePath}");
+
+            Task.Run(() =>
+            {
+                using (var audioFile = new AudioFileReader(filePath))
+                using (var outputDevice = new WaveOutEvent())
+                {
+                    outputDevice.Init(audioFile);
+                    outputDevice.Play();
+                    outputDevice.PlaybackStopped += (sender, e) =>
+                    {
+                        audioFile.Position = 0;
+                        outputDevice.Play();
+                    };
+                    while (true)
+                    {
+                        Thread.Sleep(100);
+                    }
+                }
+            });
         }
     }
 }
