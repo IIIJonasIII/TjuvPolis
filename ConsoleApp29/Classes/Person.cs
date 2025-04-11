@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace TjuvOchPolis;
 internal class Person
 {
-    public static int sizeY = 51;
-    public static int sizeX = 100;
+    public static int sizeY = 50;
+    public static int sizeX = 99;
     public static Random random = new Random();
 
 
@@ -77,36 +77,36 @@ internal class Person
                 break;
         }
     }
-    public int MoveRight(int Xdirection, int sizeX = 100)
+    public int MoveRight(int Xdirection)
     {
-        if (Xdirection == sizeX - 1)
+        if (Xdirection == sizeX)
             Xdirection = 1;
         else
             Xdirection++;
 
         return Xdirection;
     }
-    public int MoveLeft(int Xdirection, int sizeX = 100)
+    public int MoveLeft(int Xdirection)
     {
         if (Xdirection == 1)
-            Xdirection = sizeX - 1;
+            Xdirection = sizeX;
         else
             Xdirection--;
 
         return Xdirection;
     }
-    public int MoveUp(int Ydirection, int sizeY = 51)
+    public int MoveUp(int Ydirection)
     {
         if (Ydirection == 27)
-            Ydirection = sizeY - 1;
+            Ydirection = sizeY;
         else
             Ydirection--;
 
         return Ydirection;
     }
-    public int MoveDown(int Ydirection, int sizeY = 51)
+    public int MoveDown(int Ydirection)
     {
-        if (Ydirection == sizeY - 1)
+        if (Ydirection == sizeY)
             Ydirection = 27;
         else
             Ydirection++;
