@@ -19,15 +19,22 @@ namespace ConsoleApp29
 
             }
         }
-       
-        private static void PrintFrame()
+        private static void PrintHeadLine()
         {
-            Console.WriteLine(@"
-  ____ ___ _______   __                                        ____ ____   ___  _   _ ____    _  _   
+            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.WriteLine(
+@"  ____ ___ _______   __                                        ____ ____   ___  _   _ ____    _  _   
  / ___|_ _|_   _\ \ / /                                       / ___|  _ \ / _ \| | | |  _ \  | || |  
 | |    | |  | |  \ V /                                       | |  _| |_) | | | | | | | |_) | | || |_ 
 | |___ | |  | |   | |                                        | |_| |  _ <| |_| | |_| |  __/  |__   _|
- \____|___| |_|   |_|                                         \____|_| \_\\___/ \___/|_|        |_|  
+ \____|___| |_|   |_|                                         \____|_| \_\\___/ \___/|_|        |_|  ");
+            Console.ResetColor();
+        }
+        private static void PrintFrame()
+        {
+            PrintHeadLine();
+            Console.WriteLine(
+@"
 ╔════════════════════════════ STATUS ═════════════════════════════╗ ╔═══════════ PRISON ════════════╗
 ║                                                                 ║ ║                               ║
 ║                                                                 ║ ║                               ║
