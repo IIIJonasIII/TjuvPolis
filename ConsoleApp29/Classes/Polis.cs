@@ -9,7 +9,7 @@ internal class Polis : Person
 {
     public string Symbol { get; private set; } = "P";
     public int ThiefsCaught { get; set; } = 0;
-    public Polis( List<string> inventory) : base(inventory)
+    public Polis(Stack<string> inventory) : base(inventory)
     {
 
     }

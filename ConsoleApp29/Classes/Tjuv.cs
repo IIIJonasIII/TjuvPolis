@@ -9,7 +9,7 @@ internal class Tjuv : Person
 {
     public string Symbol { get; set; } = "T";
     public int StolenItems { get; set; } = 0;
-    public Tjuv(List<string> inventory) : base(inventory)
+    public Tjuv(Stack<string> inventory) : base(inventory)
     {
 
     }

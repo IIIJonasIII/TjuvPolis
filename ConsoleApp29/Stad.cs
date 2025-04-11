@@ -6,6 +6,7 @@ namespace TjuvOchPolis
 {
     internal class Stad
     {
+        public static int fikaPaus = 1;
         public void StartGame()
         {
             while (true)
@@ -14,7 +15,7 @@ namespace TjuvOchPolis
                 PrintPersons();
                 Check();     
                 PrintPrison();         
-                PrintNews();           
+                PrintNews();
                 Thread.Sleep(200);
             }
         }
@@ -28,14 +29,17 @@ namespace TjuvOchPolis
 
         public Stad()
         {
-            for (int i = 0; i < 5; i++)
-                poliser.Add(new Polis(new List<string>()));
+            Stack<string> inventory = new Stack<string>(["Klocka", "Telefon", "Pengar", "Nycklar"]);
+            Stack<string> inventoryTjuv = new Stack<string>([]);
 
-            for (int i =0; i < 10; i++)
-                tjuvar.Add(new Tjuv(new List<string>()));
+            for (int i = 0; i < 7; i++)
+                poliser.Add(new Polis(new Stack<string>(inventory)));
 
-            for (int i = 0;i < 10; i++)
-                medborgare.Add(new Medborgare(new List<string>()));
+            for (int i = 0; i < 12; i++)
+                tjuvar.Add(new Tjuv(new Stack<string>(inventoryTjuv)));
+
+            for (int i = 0;i < 15; i++)
+                medborgare.Add(new Medborgare(new   Stack<string>(inventory)));
         }
 
         public void Start()
@@ -86,19 +90,12 @@ namespace TjuvOchPolis
             Console.WriteLine("Medborgare: " + "C");
 
         }
-
-
-
         public void PrintNews()
         {
             Console.SetCursorPosition(2, 17);
-            Console.WriteLine("''''''''''''''''''''''''''''''NEWS''''''''''''''''''''''''''''''");
             Console.SetCursorPosition(2, 18);
-            Console.WriteLine("Polisen grep Alex");
             Console.SetCursorPosition(2, 19);
-            Console.WriteLine("Tjuvarn skrek högt");
             Console.SetCursorPosition(2, 20);
-            Console.WriteLine("Medborgaren sprang");
         }
 
         public void PrintPrison()
@@ -120,24 +117,31 @@ namespace TjuvOchPolis
                 Console.WriteLine("                          ");
             }
         }
-
-
-  
-
         public void Check()
         {
-            
             foreach (var polis in poliser)
             {
                 foreach (var tjuv in tjuvar.ToList()) 
                 {
                     if (polis.Xdirection == tjuv.Xdirection && polis.Ydirection == tjuv.Ydirection)
                     {
-                        Console.SetCursorPosition(2, 18);
-                        Console.WriteLine($"Polis {polis.Name} grep tjuven {tjuv.Name}!");
+                        Console.SetCursorPosition(2, 17);
+                        Console.WriteLine($"Polis {polis.Name} grep tjuven {tjuv.Name}!         ");
 
-                        tjuvar.Remove(tjuv);
-                        fangelse.Add(tjuv); 
+                        if (tjuv.Inventory.Count() > 0) 
+                        {
+                            tjuv.Inventory.Clear();
+                            tjuvar.Remove(tjuv);
+                            fangelse.Add(tjuv);
+                        }
+                        else
+                        {
+                            Console.SetCursorPosition(2, 17);
+                            Console.WriteLine($"{tjuv.Name} sprang iväg från Polisen {polis.Name}!      ");
+                        }
+                        //tjuvar.Remove(tjuv);
+                        //fangelse.Add(tjuv);
+                        
                     }
 
                 }
@@ -150,14 +154,53 @@ namespace TjuvOchPolis
                 {
                     if (tjuv.Xdirection == medb.Xdirection && tjuv.Ydirection == medb.Ydirection)
                     {
-                        Console.SetCursorPosition(2, 19);
-                        Console.WriteLine($"Tjuven {tjuv.Name} rånade medborgaren {medb.Name}!");
+                        Console.SetCursorPosition(2, 18);
+                        if (medb.Inventory.Count() < 1)
+                            Console.WriteLine($"Medborgaren {medb.Name} slog ner tjuven {tjuv.Name}");
+                        else
+                        {
+                            Console.WriteLine($"Tjuven {tjuv.Name} rånade {medb.Name} på hens {medb.Inventory.Peek()}!            ");
+                            string item = medb.Inventory.Pop();
+                            tjuv.Inventory.Push(item);
+                            Console.SetCursorPosition(2, 20);
 
-                        medborgare.Remove(medb);
-
-                       
-                        tjuv.Inventory.Add("Plånbok");
+                            //Bara för att titta om inventoryn uppdateras
+                            Console.WriteLine($"{tjuv.Inventory.Count()}"); 
+                        }
                     }
+                }
+            }
+
+            foreach (var medb in medborgare)
+            {
+                foreach (var polis in poliser.ToList())
+                {
+                    if (medb.Xdirection == polis.Xdirection && medb.Ydirection == polis.Ydirection)
+                    {
+                        Console.SetCursorPosition(2, 19);
+                        Console.WriteLine($"Medborgaren {medb.Name} hälsade glatt på konstapel {polis.Name}!        ");
+                    }
+
+                }
+            }
+
+            
+            foreach (var polis in poliser)
+            {
+                foreach (var polisen in poliser.ToList())
+                {
+                    if (polis.Xdirection == polisen.Xdirection && polis.Ydirection == polisen.Ydirection)
+                    {
+                        if(polis.Name != polisen.Name)
+                        {
+                        Console.SetCursorPosition(2, 23);
+                        Console.WriteLine($"SKATTEBETALDA FIKAPAUSER: {fikaPaus++ / 2} ");
+                        Console.SetCursorPosition(2, 24); 
+                        Console.WriteLine($"Konstapel {polis.Name} tog en fika med konstapel {polisen.Name}!        ");
+                        }
+                        
+                    }
+
                 }
             }
         }
