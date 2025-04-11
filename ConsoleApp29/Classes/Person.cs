@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 namespace TjuvOchPolis;
 internal class Person
 {
-    public static int sizeY = 50;
-    public static int sizeX = 99;
+    public int sizeY = 50;
+    public int sizeX = 99;
     public static Random random = new Random();
 
 

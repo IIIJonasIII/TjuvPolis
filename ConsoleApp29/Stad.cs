@@ -15,7 +15,7 @@ namespace TjuvOchPolis
                 PrintPersons();
                 Check();     
                 //PrintPrison();         
-                PrintNews();
+                //PrintNews();
                 Thread.Sleep(200);
             }
         }
@@ -138,7 +138,6 @@ namespace TjuvOchPolis
                         {
                             tjuv.Inventory.Clear();
                             tjuvar.Remove(tjuv);
-                            
                             fangelse.Add(new Fånge(tjuv, new Stack<string>([])));
                         }
                         else
@@ -185,7 +184,7 @@ namespace TjuvOchPolis
                     if (medb.Xdirection == polis.Xdirection && medb.Ydirection == polis.Ydirection)
                     {
                         Console.SetCursorPosition(2, 19);
-                        Console.WriteLine($"Medborgaren {medb.Name} hälsade glatt på konstapel {polis.Name}!        ");
+                        Console.WriteLine($"Medborgaren {medb.Name} hälsade glatt på konstapel {polis.Name}!       ");
                     }
 
                 }

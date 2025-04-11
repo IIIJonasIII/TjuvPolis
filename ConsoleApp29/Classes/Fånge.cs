@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 namespace TjuvOchPolis;
 internal class Fånge : Person
 {
+    public int sizeY = 24;
+    public int sizeX = 99;
     public Fånge(Tjuv tjuv, Stack<string> inventory) : base(inventory)
     {
-        Xdirection = 84;
-        Ydirection = 15;
+        Xdirection = random.Next(70, sizeX);
+        Ydirection = random.Next(8, sizeY);
         riktning = tjuv.riktning;
         Name = tjuv.Name;
         Inventory = inventory;
@@ -23,13 +25,13 @@ internal class Fånge : Person
     }
     public void PrintColor()
     {
-        Console.ForegroundColor = ConsoleColor.Red;
+        Console.ForegroundColor = ConsoleColor.DarkRed;
         Console.Write(symbol);
         Console.ResetColor();
     }
     public override int MoveRight(int Xdirection)
     {
-        if (Xdirection == 99)
+        if (Xdirection == sizeX)
             Xdirection = 69;
         else
             Xdirection++;
@@ -39,7 +41,7 @@ internal class Fånge : Person
     public override int MoveLeft(int Xdirection)
     {
         if (Xdirection == 69)
-            Xdirection = 99;
+            Xdirection = sizeX;
         else
             Xdirection--;
 
@@ -48,7 +50,7 @@ internal class Fånge : Person
     public override int MoveUp(int Ydirection)
     {
         if (Ydirection == 7)
-            Ydirection = 24;
+            Ydirection = sizeY;
         else
             Ydirection--;
 
@@ -56,7 +58,7 @@ internal class Fånge : Person
     }
     public override int MoveDown(int Ydirection)
     {
-        if (Ydirection == 24)
+        if (Ydirection == sizeY)
             Ydirection = 7;
         else
             Ydirection++;
