@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NAudio.Wave;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 
@@ -11,6 +12,8 @@ namespace TjuvOchPolis
         {
             while (true)
             {
+                
+                PlaySound();
                 PrintStatus();
                 PrintPersons();
                 Check();     
@@ -41,7 +44,40 @@ namespace TjuvOchPolis
                 medborgare.Add(new Medborgare(new   Stack<string>(inventory)));
 
         }
+        public void PlaySound()
+        {
+            string filePath = Path.Combine("Audio", "cityaudio.mp3");
+            if (Console.KeyAvailable)
+            {
+                var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.Spacebar)
+                {
+                    if (!File.Exists(filePath))
+                        throw new FileNotFoundException($"File not found {filePath}");
 
+                    Task.Run(() =>
+                    {
+                        using (var audioFile = new AudioFileReader(filePath))
+                        using (var outputDevice = new WaveOutEvent())
+                        {
+                            outputDevice.Init(audioFile);
+                            outputDevice.Play();
+                            outputDevice.PlaybackStopped += (sender, e) =>
+                            {
+                                audioFile.Position = 0;
+                                outputDevice.Play();
+                            };
+                            while (true)
+                            {
+                                Thread.Sleep(100);
+                            }
+                        }
+                    });
+                }
+            }
+
+            
+        }
         public void Start()
         {
             while (true)

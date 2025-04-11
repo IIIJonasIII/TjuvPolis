@@ -11,7 +11,6 @@ namespace ConsoleApp29
     {
         static void Main(string[] args)
         {
-            PlaySound();
             Console.CursorVisible = false;
             PrintFrame();
 
@@ -83,30 +82,6 @@ namespace ConsoleApp29
 ╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝
 ");
         }
-        static void PlaySound()
-        {
-            string filePath = Path.Combine("Audio", "cityaudio.mp3");
-            if (!File.Exists(filePath))
-                throw new FileNotFoundException($"File not found {filePath}");
-
-            Task.Run(() =>
-            {
-                using (var audioFile = new AudioFileReader(filePath))
-                using (var outputDevice = new WaveOutEvent())
-                {
-                    outputDevice.Init(audioFile);
-                    outputDevice.Play();
-                    outputDevice.PlaybackStopped += (sender, e) =>
-                    {
-                        audioFile.Position = 0;
-                        outputDevice.Play();
-                    };
-                    while (true)
-                    {
-                        Thread.Sleep(100);
-                    }
-                }
-            });
-        }
+        
     }
 }
