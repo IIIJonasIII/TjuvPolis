@@ -21,7 +21,7 @@ namespace TjuvOchPolis
         {
             while (true)
             {
-                PlaySound();
+                PushKey();
                 PrintStatus();
                 PrintPersons();
                 Check();     
@@ -41,40 +41,55 @@ namespace TjuvOchPolis
                 medborgare.Add(new Medborgare(new   Stack<string>(inventory)));
 
         }
-
-        public void PlaySound()
+        public void PushKey()
         {
-            string filePath = Path.Combine("Audio", "cityaudio.mp3");
             if (Console.KeyAvailable)
             {
                 var key = Console.ReadKey(true);
+                if (key.Key == ConsoleKey.T)
+                {
+                    tjuvar.Add(new Tjuv(new Stack<string>(inventoryTjuv)));
+                }
+                if (key.Key == ConsoleKey.M)
+                {
+                    medborgare.Add(new Medborgare(new Stack<string>(inventory)));
+                }
+                if (key.Key == ConsoleKey.P)
+                {
+                    poliser.Add(new Polis(new Stack<string>(inventory)));
+                }
                 if (key.Key == ConsoleKey.Spacebar)
                 {
-                    if (!File.Exists(filePath))
-                        throw new FileNotFoundException($"File not found {filePath}");
-
-                    Task.Run(() =>
-                    {
-                        using (var audioFile = new AudioFileReader(filePath))
-                        using (var outputDevice = new WaveOutEvent())
-                        {
-                            outputDevice.Init(audioFile);
-                            outputDevice.Play();
-                            outputDevice.PlaybackStopped += (sender, e) =>
-                            {
-                                audioFile.Position = 0;
-                                outputDevice.Play();
-                            };
-                            while (true)
-                            {
-                                Thread.Sleep(100);
-                            }
-                        }
-                    });
+                    PlaySound();
                 }
             }
-
+        }
+        public void PlaySound()
+        {
+            string filePath = Path.Combine("Audio", "cityaudio.mp3");
             
+            if (!File.Exists(filePath))
+                throw new FileNotFoundException($"File not found {filePath}");
+
+            Task.Run(() =>
+            {
+                using (var audioFile = new AudioFileReader(filePath))
+                using (var outputDevice = new WaveOutEvent())
+                {
+                    outputDevice.Init(audioFile);
+                    outputDevice.Play();
+                    outputDevice.PlaybackStopped += (sender, e) =>
+                    {
+                        audioFile.Position = 0;
+                        outputDevice.Play();
+                    };
+                    while (true)
+                    {
+                        Thread.Sleep(100);
+                    }
+                }
+            });
+
         }
 
         public void PrintPersons()
