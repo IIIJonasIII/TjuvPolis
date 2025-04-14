@@ -194,9 +194,6 @@ namespace TjuvOchPolis
                             Console.SetCursorPosition(2, 17);
                             Console.WriteLine($"{tjuv.Name} sprang iväg från Polisen {polis.Name}!      ");
                         }
-                        //tjuvar.Remove(tjuv);
-                        //fangelse.Add(tjuv);
-                        
                     }
 
                 }
@@ -218,9 +215,6 @@ namespace TjuvOchPolis
                             string item = medb.Inventory.Pop();
                             tjuv.Inventory.Push(item);
                             Console.SetCursorPosition(2, 20);
-
-                            //Bara för att titta om inventoryn uppdateras
-                            Console.WriteLine($"{tjuv.Inventory.Count()}"); 
                         }
                     }
                 }
