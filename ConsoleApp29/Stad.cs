@@ -15,8 +15,8 @@ namespace TjuvOchPolis
         Stack<string> inventory = new Stack<string>(["Klocka", "Telefon", "Pengar", "Nycklar"]);
         Stack<string> inventoryTjuv = new Stack<string>([]);
 
-        public static int fikaPaus = 1;
-        public static int hastighet = 200;
+        public int fikaPaus = 1;
+        public int hastighet = 200;
 
 
         public void StartGame()
@@ -169,6 +169,9 @@ namespace TjuvOchPolis
 
             Console.SetCursorPosition(2, 10);
             Console.WriteLine($"Fångar: {fangelse.Count}    ");
+
+            Console.SetCursorPosition(2, 14);
+            Console.WriteLine($"Hastighet: {hastighet}    ");
 
         }
 
