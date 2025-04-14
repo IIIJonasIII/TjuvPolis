@@ -36,12 +36,7 @@ internal class Person
             "Emil", "Robin", "Daniel", "Simon", "Oscar", "Niklas", "Patrik", "Andreas", "Marcus", "Erik", "Henrik", "Sebastian" };
          
         return PTM [random.Next(1, PTM.Count)];
-        
-
-
     }
-
-
     public void RandomDirection()
     {
        

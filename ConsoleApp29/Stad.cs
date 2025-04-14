@@ -16,6 +16,8 @@ namespace TjuvOchPolis
         Stack<string> inventoryTjuv = new Stack<string>([]);
 
         public static int fikaPaus = 1;
+        public static int threadSleep = 200;
+
 
         public void StartGame()
         {
@@ -25,7 +27,7 @@ namespace TjuvOchPolis
                 PrintStatus();
                 PrintPersons();
                 Check();     
-                Thread.Sleep(200);
+                Thread.Sleep(threadSleep);
             }
         }
 
@@ -46,21 +48,38 @@ namespace TjuvOchPolis
             if (Console.KeyAvailable)
             {
                 var key = Console.ReadKey(true);
-                if (key.Key == ConsoleKey.T)
+                switch (key.Key)
                 {
-                    tjuvar.Add(new Tjuv(new Stack<string>(inventoryTjuv)));
-                }
-                if (key.Key == ConsoleKey.M)
-                {
-                    medborgare.Add(new Medborgare(new Stack<string>(inventory)));
-                }
-                if (key.Key == ConsoleKey.P)
-                {
-                    poliser.Add(new Polis(new Stack<string>(inventory)));
-                }
-                if (key.Key == ConsoleKey.Spacebar)
-                {
-                    PlaySound();
+                    case ConsoleKey.T:
+                        tjuvar.Add(new Tjuv(new Stack<string>(inventoryTjuv)));
+                        break;
+                    case ConsoleKey.R:
+                        tjuvar[tjuvar.Count - 1].Position();
+                        tjuvar.Remove(tjuvar[tjuvar.Count - 1]);
+                        break;
+                    case ConsoleKey.M:
+                        medborgare.Add(new Medborgare(new Stack<string>(inventory)));
+                        break;
+                    case ConsoleKey.N:
+                        medborgare[medborgare.Count - 1].Position();
+                        medborgare.Remove(medborgare[medborgare.Count - 1]);
+                        break;
+                    case ConsoleKey.P:
+                        poliser.Add(new Polis(new Stack<string>(inventory)));
+                        break;
+                    case ConsoleKey.O:
+                        poliser[poliser.Count - 1].Position();
+                        poliser.Remove(poliser[poliser.Count - 1]);
+                        break;
+                    case ConsoleKey.Spacebar:
+                        PlaySound();
+                        break;
+                    case ConsoleKey.S:
+                        threadSleep += 100;
+                        break;
+                    case ConsoleKey.A:
+                        threadSleep -= 100;
+                        break;
                 }
             }
         }
@@ -127,15 +146,15 @@ namespace TjuvOchPolis
 
 
             Console.SetCursorPosition(2, 7);
-            Console.WriteLine($"Poliser: {poliser.Count}");
+            Console.WriteLine($"Poliser: {poliser.Count}   ");
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine($"Tjuvar: {tjuvar.Count} ");
+            Console.WriteLine($"Tjuvar: {tjuvar.Count}   ");
 
             Console.SetCursorPosition(2, 9);
-            Console.WriteLine($"Medborgare: {medborgare.Count}");
+            Console.WriteLine($"Medborgare: {medborgare.Count}   ");
 
             Console.SetCursorPosition(2, 10);
-            Console.WriteLine($"Fångar: {fangelse.Count}");
+            Console.WriteLine($"Fångar: {fangelse.Count}    ");
 
         }
 
