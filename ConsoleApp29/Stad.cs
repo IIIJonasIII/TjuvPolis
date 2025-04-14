@@ -12,13 +12,10 @@ namespace TjuvOchPolis
         {
             while (true)
             {
-                
                 PlaySound();
                 PrintStatus();
                 PrintPersons();
                 Check();     
-                //PrintPrison();         
-                //PrintNews();
                 Thread.Sleep(200);
             }
         }
@@ -78,15 +75,6 @@ namespace TjuvOchPolis
 
             
         }
-        public void Start()
-        {
-            while (true)
-            {
-                PrintStatus();
-                PrintPersons();
-                Thread.Sleep(200);
-            }
-        }
 
         public void PrintPersons()
         {
@@ -132,33 +120,7 @@ namespace TjuvOchPolis
             Console.WriteLine("Medborgare: " + "C");
 
         }
-        public void PrintNews()
-        {
-            Console.SetCursorPosition(2, 17);
-            Console.SetCursorPosition(2, 18);
-            Console.SetCursorPosition(2, 19);
-            Console.SetCursorPosition(2, 20);
-        }
 
-        public void PrintPrison()
-        {
-            int rad = 8;
-            Console.SetCursorPosition(69, 7);
-            Console.WriteLine("Fängelse:");
-
-            foreach (var fånge in fangelse)
-            {
-                Console.SetCursorPosition(69, rad++);
-                Console.WriteLine($"- {fånge.Name}");
-            }
-
-            
-            for (int i = rad; i < 25; i++)
-            {
-                Console.SetCursorPosition(69, i);
-                Console.WriteLine("                          ");
-            }
-        }
         public void Check()
         {
             foreach (var polis in poliser)
