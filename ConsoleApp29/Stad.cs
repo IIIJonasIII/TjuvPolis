@@ -109,16 +109,18 @@ namespace TjuvOchPolis
         
         public void PrintStatus()
         {
+
+
             Console.SetCursorPosition(2, 7);
-            Console.WriteLine("''''''''''''''''''''''''''''''Status''''''''''''''''''''''''''''");
+            Console.WriteLine($"Poliser: {poliser.Count}");
             Console.SetCursorPosition(2, 8);
-            Console.WriteLine("Poliser: " + "A");
+            Console.WriteLine($"Tjuvar: {tjuvar.Count} ");
 
             Console.SetCursorPosition(2, 9);
-            Console.WriteLine("Tjuvar: " + "B");
+            Console.WriteLine($"Medborgare: {medborgare.Count}");
 
             Console.SetCursorPosition(2, 10);
-            Console.WriteLine("Medborgare: " + "C");
+            Console.WriteLine($"Fångar: {fangelse.Count}");
 
         }
 
