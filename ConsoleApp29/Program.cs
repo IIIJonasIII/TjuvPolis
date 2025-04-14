@@ -81,9 +81,9 @@ namespace ConsoleApp29
 ║                                                                                                   ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝
 ╔═════════════════════════════════════════════ CONTROLS ════════════════════════════════════════════╗
-║   Key: R/T = Ta bort/lägg till tjuv              Key: A/S = Öka/sänk farten                       ║
-║   Key: O/P = Ta bort/lägg till polis             Key: Mellanslag = Musik                          ║
-║   Key: N/M = Ta bort/lägg till medborgare                                                         ║
+║   Key: R/T = Ta bort/lägg till tjuv                   Key: A/S = Öka/sänk farten                  ║
+║   Key: O/P = Ta bort/lägg till polis                  Key: Mellanslag = Musik                     ║
+║   Key: N/M = Ta bort/lägg till medborgare             Key: Escape = Avsluta                       ║
 ╚═══════════════════════════════════════════════════════════════════════════════════════════════════╝
 ");
         }

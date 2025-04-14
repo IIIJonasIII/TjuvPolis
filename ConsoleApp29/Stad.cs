@@ -16,7 +16,7 @@ namespace TjuvOchPolis
         Stack<string> inventoryTjuv = new Stack<string>([]);
 
         public static int fikaPaus = 1;
-        public static int threadSleep = 200;
+        public static int hastighet = 200;
 
 
         public void StartGame()
@@ -27,7 +27,7 @@ namespace TjuvOchPolis
                 PrintStatus();
                 PrintPersons();
                 Check();     
-                Thread.Sleep(threadSleep);
+                Thread.Sleep(hastighet);
             }
         }
 
@@ -54,31 +54,45 @@ namespace TjuvOchPolis
                         tjuvar.Add(new Tjuv(new Stack<string>(inventoryTjuv)));
                         break;
                     case ConsoleKey.R:
-                        tjuvar[tjuvar.Count - 1].Position();
-                        tjuvar.Remove(tjuvar[tjuvar.Count - 1]);
+                        if (tjuvar.Count > 0)
+                        {
+                            tjuvar[tjuvar.Count - 1].Position();
+                            tjuvar.Remove(tjuvar[tjuvar.Count - 1]);
+                        }
                         break;
                     case ConsoleKey.M:
                         medborgare.Add(new Medborgare(new Stack<string>(inventory)));
                         break;
                     case ConsoleKey.N:
-                        medborgare[medborgare.Count - 1].Position();
-                        medborgare.Remove(medborgare[medborgare.Count - 1]);
+                        if (medborgare.Count > 0)
+                        {
+                            medborgare[medborgare.Count - 1].Position();
+                            medborgare.Remove(medborgare[medborgare.Count - 1]);
+                        }
                         break;
                     case ConsoleKey.P:
                         poliser.Add(new Polis(new Stack<string>(inventory)));
                         break;
                     case ConsoleKey.O:
-                        poliser[poliser.Count - 1].Position();
-                        poliser.Remove(poliser[poliser.Count - 1]);
+                        if (poliser.Count > 0)
+                        {
+                            poliser[poliser.Count - 1].Position();
+                            poliser.Remove(poliser[poliser.Count - 1]);
+                        }
                         break;
                     case ConsoleKey.Spacebar:
                         PlaySound();
                         break;
                     case ConsoleKey.S:
-                        threadSleep += 100;
+                        if (hastighet < 1000)
+                            hastighet += 50;
                         break;
                     case ConsoleKey.A:
-                        threadSleep -= 100;
+                        if (hastighet >= 50)
+                            hastighet -= 50;
+                        break;
+                    case ConsoleKey.Escape:
+                        Environment.Exit(0);
                         break;
                 }
             }
