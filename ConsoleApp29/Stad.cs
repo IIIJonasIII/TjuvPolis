@@ -7,7 +7,16 @@ namespace TjuvOchPolis
 {
     internal class Stad
     {
+        public List<Polis> poliser = new List<Polis>();
+        public List<Tjuv> tjuvar = new List<Tjuv>();
+        public List<Medborgare> medborgare = new List<Medborgare>();
+        public List<Fånge> fangelse = new List<Fånge>();
+
+        Stack<string> inventory = new Stack<string>(["Klocka", "Telefon", "Pengar", "Nycklar"]);
+        Stack<string> inventoryTjuv = new Stack<string>([]);
+
         public static int fikaPaus = 1;
+
         public void StartGame()
         {
             while (true)
@@ -20,17 +29,8 @@ namespace TjuvOchPolis
             }
         }
 
-
-        public List<Polis> poliser = new List<Polis>();
-        public List<Tjuv> tjuvar = new List<Tjuv>();
-        public List<Medborgare> medborgare = new List<Medborgare>();
-        public List<Fånge> fangelse = new List<Fånge>();
-
         public Stad()
         {
-            Stack<string> inventory = new Stack<string>(["Klocka", "Telefon", "Pengar", "Nycklar"]);
-            Stack<string> inventoryTjuv = new Stack<string>([]);
-
             for (int i = 0; i < 7; i++)
                 poliser.Add(new Polis(new Stack<string>(inventory)));
 
@@ -41,6 +41,7 @@ namespace TjuvOchPolis
                 medborgare.Add(new Medborgare(new   Stack<string>(inventory)));
 
         }
+
         public void PlaySound()
         {
             string filePath = Path.Combine("Audio", "cityaudio.mp3");
@@ -208,9 +209,6 @@ namespace TjuvOchPolis
                 }
             }
         }
-
-
-
 
     }
 }
