@@ -9,6 +9,8 @@ namespace ConsoleApp29
 {
     internal class Program
     {
+        //Om konsolen krashar(Windows powershell): Starta konsolen, tryck på pil ner (vid flikarna), settings, Launch size,
+        //Sätt columns till 120 och rows till 60
         static void Main(string[] args)
         {
             Console.CursorVisible = false;
